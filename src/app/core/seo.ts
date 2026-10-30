@@ -7,7 +7,7 @@ export interface PageMeta {
   description: string;
   /** Caminho a partir da raiz do site, ex.: "/meu-post". */
   path: string;
-  /** URL absoluta (https) da imagem do card. */
+  /** URL absoluta (https) da imagem do card; sem ela vale `og-default.png` (public/). */
   image?: string;
   type?: 'website' | 'article';
   publishedAt?: string | null;
@@ -30,9 +30,9 @@ export class Seo {
       'og:url': url,
       'og:type': page.type ?? 'website',
       'og:site_name': 'Blog de Notas',
-      'twitter:card': page.image ? 'summary_large_image' : 'summary',
+      'og:image': page.image ?? `${environment.siteUrl}/og-default.png`,
+      'twitter:card': 'summary_large_image',
     };
-    if (page.image) tags['og:image'] = page.image;
     if (page.publishedAt) tags['article:published_time'] = page.publishedAt;
     tags['robots'] = page.noindex ? 'noindex' : 'index,follow';
 
@@ -40,6 +40,5 @@ export class Seo {
       const attr = key.startsWith('og:') || key.startsWith('article:') ? 'property' : 'name';
       this.meta.updateTag({ [attr]: key, content });
     }
-    if (!page.image) this.meta.removeTag("property='og:image'");
   }
 }

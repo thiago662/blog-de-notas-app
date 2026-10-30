@@ -42,6 +42,7 @@ Publicação: `https://thiago662.github.io/blog-de-notas-app/` (GitHub Pages).
 - Navbar **sempre escura** (`--band`), nos dois temas; botão "tema claro/escuro" nela. Sem escolha o tema segue o sistema; a escolha fica em `localStorage['tema']` e vira `data-theme` no `<html>` (script em `index.html`, antes da pintura).
 - Tokens e estilos em `src/styles.scss` (CSS variables; as cores de post-it vêm das variáveis SCSS). Fontes via Google Fonts: Fraunces (títulos), Newsreader (leitura), Caveat (letra de mão), DM Mono (metadados).
 - Post-it = `.note` com classe `n-<cor>`; categoria → cor num único mapa em `core/categorias.ts`. Corpo do post = `.prose`: `**negrito**` vira marca-texto, `~~riscado~~` risco de lápis, citação (`>`) vira bilhete com fita.
+- Logo: post-it laranja com canto dobrado e um N traçado à mão (`public/favicon.svg`; o mesmo SVG está inline na navbar). Em `public/` também `favicon.ico` (16/32/48), `apple-touch-icon.png` (180, fundo escuro) e `og-default.png` (1200×630, `og:image` padrão em `core/seo.ts` quando o post não tem capa). Para refazer os PNGs/ICO: renderizar o SVG no Chrome headless (`--screenshot`) e empacotar o ICO com PNGs.
 - `tools/check.mjs` usa os seletores `.note` e `.prose`: se mudar essas classes, mudar lá também (senão o check passa com `cards=0`).
 
 ## O que reaproveitar do brain-logs

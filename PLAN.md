@@ -53,6 +53,7 @@ Blog de ensaios e textos livres (reflexões, sociedade, cotidiano) publicado em 
 ### Fase 4 — Visual
 - [x] Post-its com a cor pela categoria (`custom.categoria`), sem a cadeia de `ngClass` repetida
 - [x] Página do post com a identidade do blog (fundo off-white, navbar escura)
+- [x] Logo (post-it com N): favicon SVG/ICO, apple-touch-icon, navbar e `og-default.png` nas meta tags
 - [x] Visual "caderno de ensaios" (fita, folha pautada, marca-texto) + tema claro/escuro opcional, navbar sempre escura
 - [x] Autor (`settings.autor`) (código pronto; falta o campo no ademiro para ver)
 
