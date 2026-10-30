@@ -5,9 +5,17 @@
       @if (post.subtitle) {
         <p class="lead text-body-secondary">{{ post.subtitle }}</p>
       }
-      <p class="small text-body-secondary mb-2">{{ post.publishedAt | date: 'longDate' }}</p>
+      <p class="small text-body-secondary mb-2">
+        @if (autor()) {
+          <strong>{{ autor() }}</strong> ·
+        }
+        {{ post.publishedAt | date: 'longDate' }}
+      </p>
+      @if (post.custom['categoria']) {
+        <span class="badge me-1" [class]="'text-bg-' + cor()">{{ post.custom['categoria'] }}</span>
+      }
       @for (tag of post.tags; track tag) {
-        <span class="badge text-bg-secondary me-1">{{ tag }}</span>
+        <span class="badge border me-1" [class]="'text-bg-' + cor()">{{ tag }}</span>
       }
     </header>
 

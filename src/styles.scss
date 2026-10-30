@@ -18,7 +18,8 @@ $theme-colors: (
   "orange":     $orange-post-it,
   "blue":       $blue-post-it,
   "red":        $red-post-it,
-  "off-white":  $off-white
+  "off-white":  $off-white,
+  "dark":       $dark
 );
 
 @import "../node_modules/bootstrap/scss/bootstrap";
@@ -73,4 +74,9 @@ $theme-colors: (
       padding: 0.5rem;
     }
   }
+}
+
+/* Post-it da lista: largura fixa, igual ao desenho original */
+.post-it {
+  width: 18rem;
 }

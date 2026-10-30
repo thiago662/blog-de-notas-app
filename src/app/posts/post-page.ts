@@ -2,6 +2,7 @@ import { DatePipe } from '@angular/common';
 import { Component, OnInit, computed, inject, input, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { BlogService, Post } from '../core/blog.service';
+import { corDaCategoria } from '../core/categorias';
 import { renderMarkdown } from '../core/markdown';
 import { Seo } from '../core/seo';
 
@@ -18,6 +19,8 @@ export class PostPage implements OnInit {
 
   protected readonly post = signal<Post | null>(null);
   protected readonly notFound = signal(false);
+  protected readonly autor = signal('');
+  protected readonly cor = computed(() => corDaCategoria(this.post()?.custom ?? {}));
   /** Inserido via [innerHTML]: o Angular sanitiza (remove scripts, eventos, javascript:). */
   protected readonly html = computed(() => renderMarkdown(this.post()?.body ?? ''));
 
@@ -28,6 +31,7 @@ export class PostPage implements OnInit {
       this.seo.set({ title: 'Post não encontrado — Blog de Notas', description: '', path: `/${this.slug()}`, noindex: true });
       return;
     }
+    this.autor.set(String((await this.blogService.getBlog())?.settings['autor'] ?? ''));
     this.post.set(post);
     this.seo.set({
       title: `${post.title} — Blog de Notas`,

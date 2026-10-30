@@ -1,7 +1,8 @@
 import { DatePipe } from '@angular/common';
-import { Component, OnInit, inject, signal } from '@angular/core';
+import { Component, OnInit, computed, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { BlogInfo, BlogService, PostSummary } from '../core/blog.service';
+import { corDaCategoria } from '../core/categorias';
 import { Seo } from '../core/seo';
 
 @Component({
@@ -15,6 +16,8 @@ export class PostList implements OnInit {
 
   protected readonly blog = signal<BlogInfo | null>(null);
   protected readonly posts = signal<PostSummary[] | null>(null);
+  protected readonly autor = computed(() => String(this.blog()?.settings['autor'] ?? ''));
+  protected readonly cor = (post: PostSummary) => corDaCategoria(post.custom);
 
   async ngOnInit() {
     const [blog, posts] = await Promise.all([this.blogService.getBlog(), this.blogService.listPosts()]);

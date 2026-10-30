@@ -8,26 +8,27 @@
 }
 
 @if (posts(); as posts) {
-  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+  <div class="d-flex flex-wrap justify-content-center gap-4">
     @for (post of posts; track post.id) {
-      <div class="col">
-        <a class="card h-100 text-decoration-none shadow-sm" [routerLink]="['/', post.slug]">
-          @if (post.coverUrl) {
-            <img [src]="post.coverUrl" class="card-img-top cover" [alt]="post.title" loading="lazy" />
-          } @else {
-            <div class="card-img-top cover bg-dark"></div>
+      <a
+        class="card post-it text-center text-decoration-none border border-opacity-50 border-3 rounded-0 shadow-sm"
+        [class]="'bg-' + cor(post)"
+        [routerLink]="['/', post.slug]"
+      >
+        <div class="card-body">
+          <h2 class="h5 card-title">{{ post.title }}</h2>
+          @if (post.subtitle) {
+            <p class="card-text">{{ post.subtitle }}</p>
           }
-          <div class="card-body">
-            <h2 class="h5 card-title">{{ post.title }}</h2>
-            @if (post.subtitle) {
-              <p class="card-text text-body-secondary">{{ post.subtitle }}</p>
-            }
-          </div>
-          <div class="card-footer bg-transparent border-0 small text-body-secondary">
-            {{ post.publishedAt | date: 'longDate' }}
-          </div>
-        </a>
-      </div>
+          @if (post.custom['categoria']) {
+            <p class="card-text text-start">{{ post.custom['categoria'] }}</p>
+          }
+        </div>
+        <div class="card-footer border-0 bg-transparent d-flex justify-content-between small">
+          <span>{{ autor() }}</span>
+          <span>{{ post.publishedAt | date: 'dd/MM/yyyy' }}</span>
+        </div>
+      </a>
     } @empty {
       <p class="text-body-secondary">Nenhum post publicado ainda.</p>
     }

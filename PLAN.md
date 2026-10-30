@@ -51,9 +51,9 @@ Blog de ensaios e textos livres (reflexões, sociedade, cotidiano) publicado em 
 - [ ] Usuário, no ademiro: URL pública `https://thiago662.github.io/blog-de-notas-app` e URL do deploy `https://github.com/thiago662/blog-de-notas-app/actions/workflows/deploy.yml`
 
 ### Fase 4 — Visual
-- [ ] Post-its com a cor pela categoria (`custom.categoria`), sem a cadeia de `ngClass` repetida
-- [ ] Página do post com a identidade do blog (fundo off-white, navbar escura)
-- [ ] Autor (`settings.autor`)
+- [x] Post-its com a cor pela categoria (`custom.categoria`), sem a cadeia de `ngClass` repetida
+- [x] Página do post com a identidade do blog (fundo off-white, navbar escura)
+- [x] Autor (`settings.autor`) (código pronto; falta o campo no ademiro para ver)
 
 ### Fase 5 — Publicação
 - [ ] Publicar um ensaio real no ademiro (rascunhos em `C:\Projetos\Blogs\textos`)
