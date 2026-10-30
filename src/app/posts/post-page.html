@@ -1,0 +1,30 @@
+@if (post(); as post) {
+  <article class="mx-auto post">
+    <header class="mb-4">
+      <h1 class="fw-bold">{{ post.title }}</h1>
+      @if (post.subtitle) {
+        <p class="lead text-body-secondary">{{ post.subtitle }}</p>
+      }
+      <p class="small text-body-secondary mb-2">{{ post.publishedAt | date: 'longDate' }}</p>
+      @for (tag of post.tags; track tag) {
+        <span class="badge text-bg-secondary me-1">{{ tag }}</span>
+      }
+    </header>
+
+    @if (post.coverUrl) {
+      <img [src]="post.coverUrl" [alt]="post.title" class="img-fluid rounded mb-4 w-100 cover-lg" />
+    }
+
+    <div class="post-body" [innerHTML]="html()"></div>
+
+    <footer class="mt-5 pt-3 border-top">
+      <a routerLink="/">← Todos os posts</a>
+    </footer>
+  </article>
+} @else if (notFound()) {
+  <div class="text-center py-5">
+    <h1 class="h3">Post não encontrado</h1>
+    <p class="text-body-secondary">Ele pode ter sido removido ou ainda não foi publicado.</p>
+    <a routerLink="/">Ver todos os posts</a>
+  </div>
+}

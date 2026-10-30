@@ -1,0 +1,35 @@
+@if (blog(); as blog) {
+  <header class="mb-4">
+    <h1 class="h3">{{ blog.name }}</h1>
+    @if (blog.description) {
+      <p class="text-body-secondary">{{ blog.description }}</p>
+    }
+  </header>
+}
+
+@if (posts(); as posts) {
+  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+    @for (post of posts; track post.id) {
+      <div class="col">
+        <a class="card h-100 text-decoration-none shadow-sm" [routerLink]="['/', post.slug]">
+          @if (post.coverUrl) {
+            <img [src]="post.coverUrl" class="card-img-top cover" [alt]="post.title" loading="lazy" />
+          } @else {
+            <div class="card-img-top cover bg-dark"></div>
+          }
+          <div class="card-body">
+            <h2 class="h5 card-title">{{ post.title }}</h2>
+            @if (post.subtitle) {
+              <p class="card-text text-body-secondary">{{ post.subtitle }}</p>
+            }
+          </div>
+          <div class="card-footer bg-transparent border-0 small text-body-secondary">
+            {{ post.publishedAt | date: 'longDate' }}
+          </div>
+        </a>
+      </div>
+    } @empty {
+      <p class="text-body-secondary">Nenhum post publicado ainda.</p>
+    }
+  </div>
+}

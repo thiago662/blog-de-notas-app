@@ -27,26 +27,28 @@ Blog de ensaios e textos livres (reflexões, sociedade, cotidiano) publicado em 
 ## Fases
 
 ### Fase 0 — Base
-- [ ] Commit do estado atual (há alterações locais com o visual de post-its que ainda não foram commitadas)
-- [ ] Projeto novo com `ng new` + prerender estático, Bootstrap (com o tema SCSS das cores dos post-its)
-- [ ] `overrides` de `@emnapi/*` no `package.json` desde o início (ver CLAUDE.md)
-- [ ] Config do Firebase no modelo `firebase.config.ts` / `firebase.config.example.ts`
-- [ ] Workflow de deploy no Pages (branch `master`) + `404.html`
+- [x] Commit do estado atual (há alterações locais com o visual de post-its que ainda não foram commitadas)
+- [x] Projeto novo (config copiada do brain-logs, mesmas versões do `ng new`) + prerender estático, Bootstrap (com o tema SCSS das cores dos post-its)
+- [x] `overrides` de `@emnapi/*` no `package.json` desde o início (ver CLAUDE.md)
+- [x] Config do Firebase no modelo `firebase.config.ts` / `firebase.config.example.ts`
+- [x] Workflow de deploy no Pages (branch `master`) + `404.html` (escrito)
+- [ ] Usuário: Pages com source GitHub Actions + secret `FIREBASE_CONFIG`
 
 ### Fase 1 — Dados
-- [ ] `BlogService` copiado do brain-logs, com `blogSlug: 'blog-de-notas'`
-- [ ] `renderMarkdown` copiado do brain-logs (com os testes)
+- [x] `BlogService` copiado do brain-logs, com `blogSlug: 'blog-de-notas'`
+- [x] `renderMarkdown` copiado do brain-logs (com os testes)
 
 ### Fase 2 — Páginas
-- [ ] `/` lista de posts em post-its
-- [ ] `/:slug` página do post
-- [ ] 404 (com `noindex`)
-- [ ] Título + meta tags Open Graph (serviço `Seo` do brain-logs)
+- [x] `/` lista de posts (cards genéricos; post-its na Fase 4)
+- [x] `/:slug` página do post
+- [x] 404 (com `noindex`)
+- [x] Título + meta tags Open Graph (serviço `Seo` do brain-logs)
 
 ### Fase 3 — Prerender e publicação
-- [ ] `getPrerenderParams` (uma página por post)
-- [ ] Workflow no push, manual e agendado
-- [ ] No ademiro: URL pública `https://thiago662.github.io/blog-de-notas-app` e URL do deploy `https://github.com/thiago662/blog-de-notas-app/actions/workflows/deploy.yml`
+- [ ] Deploy rodou e site publicado conferido
+- [x] `getPrerenderParams` (uma página por post)
+- [x] Workflow no push, manual e agendado
+- [ ] Usuário, no ademiro: URL pública `https://thiago662.github.io/blog-de-notas-app` e URL do deploy `https://github.com/thiago662/blog-de-notas-app/actions/workflows/deploy.yml`
 
 ### Fase 4 — Visual
 - [ ] Post-its com a cor pela categoria (`custom.categoria`), sem a cadeia de `ngClass` repetida

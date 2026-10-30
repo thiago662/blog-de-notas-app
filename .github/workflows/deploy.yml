@@ -1,0 +1,62 @@
+name: Deploy GitHub Pages
+
+on:
+  push:
+    branches: [master]
+  # Botão "Run workflow" no Actions (é para onde o "Republicar site" do Ademiro aponta).
+  workflow_dispatch:
+  # Rebuild a cada 6h para gerar a página de posts publicados desde o último deploy.
+  # O GitHub pausa agendamentos após 60 dias sem atividade no repositório.
+  schedule:
+    - cron: '0 */6 * * *'
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      # Secret FIREBASE_CONFIG = o objeto { apiKey: ..., ... } colado do Console (JSON ou literal JS).
+      # Não é segredo (vai no JS publicado), mas como secret fica mascarado nos logs públicos.
+      - name: Gerar firebase.config.ts
+        env:
+          FIREBASE_CONFIG: ${{ secrets.FIREBASE_CONFIG }}
+        run: >-
+          node -e "
+          const c = new Function('return ' + (process.env.FIREBASE_CONFIG || 'null'))();
+          if (!c || !c.apiKey || !c.projectId || !c.authDomain || !c.appId)
+            throw new Error('Secret FIREBASE_CONFIG ausente ou incompleto (ver README)');
+          require('fs').writeFileSync('src/environments/firebase.config.ts',
+            'export const firebaseConfig = ' + JSON.stringify(c) + ';\n');
+          "
+      - run: npm run build -- --base-href "/${{ github.event.repository.name }}/"
+      # Rotas sem página pré-renderizada (ex.: post publicado após o último build) caem no 404.html,
+      # que é o app só-navegador: ele carrega e busca o conteúdo normalmente.
+      - run: cp dist/blog-de-notas-app/browser/index.csr.html dist/blog-de-notas-app/browser/404.html
+      - uses: actions/configure-pages@v6
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: dist/blog-de-notas-app/browser
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v5

@@ -19,16 +19,13 @@ Site público do **Blog de Notas**: ensaios e textos livres. Conteúdo escrito n
 
 Publicação: `https://thiago662.github.io/blog-de-notas-app/` (GitHub Pages).
 
-## Estado atual (2026-10-30) — antes da migração
+## Estado atual (2026-10-30)
 
-- Angular **17** com NgModules, rotas `/` (HomeComponent) e `/:id` (ViewComponent).
-- Lê o **Realtime DB antigo** do projeto scrum-truco por URL fixa no código (`home.service.ts`, `view.service.ts`). Esses dados eram de teste e serão descartados.
-- Renderiza HTML do post com `bypassSecurityTrustHtml` — **inseguro**, será substituído.
-- Repositório `thiago662/blog-de-notas-app`, branch **`master`**, um commit (`77ad45f first commit`).
-- **Há 10 arquivos com alterações locais NÃO commitadas** (visual de post-its: navbar escura, cores por categoria, datas). **Primeira tarefa: commitar esse estado** antes de recriar o projeto, para não perder o trabalho.
-- A URL do Realtime DB antigo já está no histórico público (primeiro commit). Não reescrever histórico: a limpeza é feita no banco (ver PLAN.md, "Limpeza").
+- Migrado para o modelo do brain-logs (Angular 22, zoneless, prerender estático, Firestore). Código copiado do brain-logs; **visual ainda genérico** (cards do brain-logs): post-its são a Fase 4.
+- Projeto antigo (Angular 17 + Realtime DB do scrum-truco) está no commit `23db9ce`: `git show 23db9ce:src/styles.scss` etc.
+- A URL do Realtime DB antigo já está no histórico público. Não reescrever histórico: a limpeza é feita no banco (ver PLAN.md, "Limpeza").
 
-### Identidade visual atual (preservar)
+### Identidade visual (preservar)
 
 `src/styles.scss` sobrescreve o `$theme-colors` do Bootstrap (via SCSS) com cores de post-it:
 
