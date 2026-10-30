@@ -1,34 +1,46 @@
 @if (post(); as post) {
-  <article class="mx-auto post">
-    <header class="mb-4">
-      <h1 class="fw-bold">{{ post.title }}</h1>
+  <a class="back" routerLink="/">← todos os posts</a>
+  <div class="post-wrap">
+    <article class="sheet" [class]="'n-' + cor()">
+      <h1>{{ post.title }}</h1>
       @if (post.subtitle) {
-        <p class="lead text-body-secondary">{{ post.subtitle }}</p>
+        <p class="sub">{{ post.subtitle }}</p>
       }
-      <p class="small text-body-secondary mb-2">
-        @if (autor()) {
-          <strong>{{ autor() }}</strong> ·
+      @if (post.coverUrl) {
+        <img [src]="post.coverUrl" [alt]="post.title" class="foto" />
+      }
+      <div class="prose" [innerHTML]="html()"></div>
+      <p class="end">fim do rascunho ✎</p>
+    </article>
+
+    <aside class="meta" [class]="'n-' + cor()">
+      <div class="note">
+        <dl>
+          <div>
+            <dt>categoria</dt>
+            <dd>{{ post.custom['categoria'] || '—' }}</dd>
+          </div>
+          @if (autor()) {
+            <div>
+              <dt>autor</dt>
+              <dd>{{ autor() }}</dd>
+            </div>
+          }
+          <div>
+            <dt>publicado</dt>
+            <dd>{{ post.publishedAt | date: 'dd/MM/yyyy' }}</dd>
+          </div>
+        </dl>
+        @if (post.tags.length) {
+          <div class="tags">
+            @for (tag of post.tags; track tag) {
+              <span>#{{ tag }}</span>
+            }
+          </div>
         }
-        {{ post.publishedAt | date: 'longDate' }}
-      </p>
-      @if (post.custom['categoria']) {
-        <span class="badge me-1" [class]="'text-bg-' + cor()">{{ post.custom['categoria'] }}</span>
-      }
-      @for (tag of post.tags; track tag) {
-        <span class="badge border me-1" [class]="'text-bg-' + cor()">{{ tag }}</span>
-      }
-    </header>
-
-    @if (post.coverUrl) {
-      <img [src]="post.coverUrl" [alt]="post.title" class="img-fluid rounded mb-4 w-100 cover-lg" />
-    }
-
-    <div class="post-body" [innerHTML]="html()"></div>
-
-    <footer class="mt-5 pt-3 border-top">
-      <a routerLink="/">← Todos os posts</a>
-    </footer>
-  </article>
+      </div>
+    </aside>
+  </div>
 } @else if (notFound()) {
   <div class="text-center py-5">
     <h1 class="h3">Post não encontrado</h1>

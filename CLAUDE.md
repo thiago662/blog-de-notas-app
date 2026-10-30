@@ -21,7 +21,7 @@ Publicação: `https://thiago662.github.io/blog-de-notas-app/` (GitHub Pages).
 
 ## Estado atual (2026-10-30)
 
-- Migrado para o modelo do brain-logs (Angular 22, zoneless, prerender estático, Firestore). Código copiado do brain-logs; **visual ainda genérico** (cards do brain-logs): post-its são a Fase 4.
+- Migrado para o modelo do brain-logs (Angular 22, zoneless, prerender estático, Firestore). Visual "caderno de ensaios" (Fase 4): post-its com fita, folha pautada para o post, tema claro/escuro opcional.
 - Projeto antigo (Angular 17 + Realtime DB do scrum-truco) está no commit `23db9ce`: `git show 23db9ce:src/styles.scss` etc.
 - A URL do Realtime DB antigo já está no histórico público. Não reescrever histórico: a limpeza é feita no banco (ver PLAN.md, "Limpeza").
 
@@ -37,12 +37,12 @@ Publicação: `https://thiago662.github.io/blog-de-notas-app/` (GitHub Pages).
 | `orange` | `#FCAC4A` | ensaio |
 | `blue` | `#74CBC5` | produtividade |
 | `red` | `#F36F6F` | qualquer outra |
-| `off-white` | `#FAFAEA` | fundo da página (`body.bg-off-white`) |
+| `off-white` | `#FAFAEA` | fundo da página no tema claro (`--paper`) |
 
-- Navbar `bg-dark shadow` com marca `text-off-white`.
-- Cards: `card text-center border border-opacity-50 border-3 rounded-0`, largura fixa ~18rem, classe `bg-<cor>` pela categoria; badges `text-bg-<cor>` na página do post.
-- O mapeamento categoria → cor está repetido em cadeias de ternários no `ngClass` (home e view). Na reescrita, virar **um único mapa** (ex.: `Record<string, string>`) usado pelos dois lugares.
-- Para recuperar os arquivos antigos depois de recriar o projeto: `git show <commit-do-estado-atual>:src/styles.scss` (e demais caminhos).
+- Navbar **sempre escura** (`--band`), nos dois temas; botão "tema claro/escuro" nela. Sem escolha o tema segue o sistema; a escolha fica em `localStorage['tema']` e vira `data-theme` no `<html>` (script em `index.html`, antes da pintura).
+- Tokens e estilos em `src/styles.scss` (CSS variables; as cores de post-it vêm das variáveis SCSS). Fontes via Google Fonts: Fraunces (títulos), Newsreader (leitura), Caveat (letra de mão), DM Mono (metadados).
+- Post-it = `.note` com classe `n-<cor>`; categoria → cor num único mapa em `core/categorias.ts`. Corpo do post = `.prose`: `**negrito**` vira marca-texto, `~~riscado~~` risco de lápis, citação (`>`) vira bilhete com fita.
+- `tools/check.mjs` usa os seletores `.note` e `.prose`: se mudar essas classes, mudar lá também (senão o check passa com `cards=0`).
 
 ## O que reaproveitar do brain-logs
 

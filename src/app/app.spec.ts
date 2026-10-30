@@ -14,6 +14,16 @@ describe('App', () => {
     const fixture = TestBed.createComponent(App);
     await fixture.whenStable();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.navbar-brand')?.textContent).toContain('Blog de Notas');
+    expect(compiled.querySelector('.brand')?.textContent).toContain('Blog de Notas');
+  });
+
+  it('should toggle the theme', async () => {
+    document.documentElement.dataset['theme'] = 'light';
+    const fixture = TestBed.createComponent(App);
+    await fixture.whenStable();
+    (fixture.nativeElement.querySelector('.tema') as HTMLButtonElement).click();
+    expect(document.documentElement.dataset['theme']).toBe('dark');
+    delete document.documentElement.dataset['theme'];
+    localStorage.removeItem('tema');
   });
 });

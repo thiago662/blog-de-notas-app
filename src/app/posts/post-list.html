@@ -1,33 +1,25 @@
-@if (blog(); as blog) {
-  <header class="mb-4">
-    <h1 class="h3">{{ blog.name }}</h1>
-    @if (blog.description) {
-      <p class="text-body-secondary">{{ blog.description }}</p>
-    }
-  </header>
-}
+<section class="intro">
+  <h1>{{ blog()?.description || 'Ensaios e textos livres' }}</h1>
+  <p>anotações, em ordem de aparição</p>
+</section>
 
 @if (posts(); as posts) {
-  <div class="d-flex flex-wrap justify-content-center gap-4">
+  <div class="board">
     @for (post of posts; track post.id) {
-      <a
-        class="card post-it text-center text-decoration-none border border-opacity-50 border-3 rounded-0 shadow-sm"
-        [class]="'bg-' + cor(post)"
-        [routerLink]="['/', post.slug]"
-      >
-        <div class="card-body">
-          <h2 class="h5 card-title">{{ post.title }}</h2>
+      <a class="note" [class]="'n-' + cor(post)" [routerLink]="['/', post.slug]">
+        <div>
+          <h2>{{ post.title }}</h2>
           @if (post.subtitle) {
-            <p class="card-text">{{ post.subtitle }}</p>
-          }
-          @if (post.custom['categoria']) {
-            <p class="card-text text-start">{{ post.custom['categoria'] }}</p>
+            <p>{{ post.subtitle }}</p>
           }
         </div>
-        <div class="card-footer border-0 bg-transparent d-flex justify-content-between small">
-          <span>{{ autor() }}</span>
+        <footer>
+          <span>{{ post.custom['categoria'] || 'sem categoria' }}</span>
           <span>{{ post.publishedAt | date: 'dd/MM/yyyy' }}</span>
-        </div>
+          @if (autor()) {
+            <span class="by">por {{ autor() }}</span>
+          }
+        </footer>
       </a>
     } @empty {
       <p class="text-body-secondary">Nenhum post publicado ainda.</p>

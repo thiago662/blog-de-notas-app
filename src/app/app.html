@@ -1,9 +1,10 @@
-<nav class="navbar sticky-top bg-dark shadow">
-  <div class="container">
-    <a class="navbar-brand text-off-white fw-bold" routerLink="/">Blog de Notas</a>
+<nav class="band sticky-top">
+  <div class="container py-2 d-flex flex-wrap justify-content-between align-items-baseline gap-2">
+    <a class="brand" routerLink="/">Blog de Notas<small>ensaios e rascunhos</small></a>
+    <button type="button" class="tema" (click)="alternar()">{{ escuro() ? 'tema claro' : 'tema escuro' }}</button>
   </div>
 </nav>
 
-<main class="container py-4">
+<main class="container py-5">
   <router-outlet />
 </main>
