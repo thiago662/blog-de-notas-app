@@ -15,6 +15,10 @@ export class HomeService {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
       }),
+      params: {
+        'orderBy': '"active"',
+        'equalTo': true
+      }
     }).toPromise();
   }
 }

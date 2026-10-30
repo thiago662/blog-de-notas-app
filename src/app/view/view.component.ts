@@ -1,11 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { ViewService } from './view.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-view',
   templateUrl: './view.component.html',
-  styleUrl: './view.component.scss'
+  styleUrl: './view.component.scss',
+  encapsulation: ViewEncapsulation.None
 })
 export class ViewComponent {
   id: any;
@@ -15,6 +17,7 @@ export class ViewComponent {
     private router: Router,
     private route: ActivatedRoute,
     private viewService: ViewService,
+    private sanitizer: DomSanitizer,
   ) { }
 
   ngOnInit(): void {
@@ -31,5 +34,17 @@ export class ViewComponent {
         console.log(error);
       })
       .finally(() => {});
+  }
+
+  showDate(date: any) {
+    return new Date(date).toLocaleString();
+  }
+
+  splitTopic(topics: any) {
+    return topics.split(',');
+  }
+
+  getSafeHtml(html: string) {
+    return this.sanitizer.bypassSecurityTrustHtml(html);
   }
 }

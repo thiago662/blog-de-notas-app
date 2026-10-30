@@ -8,6 +8,7 @@ import { HomeService } from './home.service';
 })
 export class HomeComponent {
   posts: any;
+  mouseOvered = false;
 
   constructor(
     private homeService: HomeService,
@@ -34,5 +35,9 @@ export class HomeComponent {
       })
       .finally(() => {
       });
+  }
+
+  showDate(date: any) {
+    return new Date(date).toLocaleString();
   }
 }

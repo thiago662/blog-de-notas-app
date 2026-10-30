@@ -1,1 +1,46 @@
 /* You can add global styles to this file, and also import other style files */
+//see it's necesary import both scss/functions and scss/variables
+
+@import "../node_modules/bootstrap/scss/functions";
+@import "../node_modules/bootstrap/scss/variables";
+
+// $primary:       $blue;
+// $secondary:     $gray-600;
+// $success:       $green;
+// $info:          $cyan;
+// $warning:       $yellow;
+// $danger:        $red;
+// $light:         $gray-100;
+// $dark:          $gray-900;
+
+$pink-post-it:   #F97594;
+$yellow-post-it: #FFD71A;
+$green-post-it:  #E4E549;
+$orange-post-it: #FCAC4A;
+$blue-post-it:   #74CBC5;
+$red-post-it:    #F36F6F;
+
+$off-white:      #FAFAEA;
+
+//futhermore it's necesary override the $theme-colors
+
+$theme-colors: (
+  // "primary":    $primary,
+  // "secondary":  $secondary,
+  // "success":    $success,
+  // "info":       $info,
+  // "warning":    $warning,
+  // "danger":     $danger,
+  // "light":      $light,
+  // "dark":       $dark,
+  "pink":       $pink-post-it,
+  "yellow":     $yellow-post-it,
+  "green":      $green-post-it,
+  "orange":     $orange-post-it,
+  "blue":       $blue-post-it,
+  "red":        $red-post-it,
+  "off-white":        $off-white
+);
+
+
+@import '../node_modules/bootstrap/scss/bootstrap.scss';

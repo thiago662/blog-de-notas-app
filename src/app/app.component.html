@@ -1,7 +1,23 @@
+<!-- <nav class="navbar navbar-expand-lg sticky-top bg-body-tertiary"> -->
+<nav class="navbar navbar-expand-lg sticky-top bg-dark shadow">
+  <div class="container-fluid">
+    <!-- <a class="navbar-brand" [routerLink]="['/home']">{{ title }}</a> -->
+    <a class="navbar-brand text-off-white" [routerLink]="['/']">{{ title }}</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <!-- <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/blog-de-notas']">Blog de notas</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/brain-logs']">Brain logs</a>
+        </li> -->
+      </ul>
+    </div>
+  </div>
+</nav>
 <div class="container">
-  <header class="header">
-      <h1 routerLink="post">{{ title }}</h1>
-  </header>
-
   <router-outlet></router-outlet>
 </div>
