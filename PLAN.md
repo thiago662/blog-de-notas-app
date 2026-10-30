@@ -74,4 +74,4 @@ Blog de ensaios e textos livres (reflexões, sociedade, cotidiano) publicado em 
 
 ## Limpeza depois da migração
 - [x] Apagar o nó `teste-projects` do Realtime DB do projeto **scrum-truco** (feito em 2026-10-30). Os posts antigos eram de teste.
-- [ ] Fechar as regras do Realtime DB do scrum-truco (eram de leitura pública), se ainda não estiverem fechadas.
+- [x] Fechar as regras do Realtime DB do scrum-truco (feito em 2026-10-30).
