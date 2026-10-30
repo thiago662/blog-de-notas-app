@@ -32,7 +32,7 @@ Blog de ensaios e textos livres (reflexões, sociedade, cotidiano) publicado em 
 - [x] `overrides` de `@emnapi/*` no `package.json` desde o início (ver CLAUDE.md)
 - [x] Config do Firebase no modelo `firebase.config.ts` / `firebase.config.example.ts`
 - [x] Workflow de deploy no Pages (branch `master`) + `404.html` (escrito)
-- [ ] Usuário: Pages com source GitHub Actions + secret `FIREBASE_CONFIG`
+- [x] Usuário: Pages com source GitHub Actions + secret `FIREBASE_CONFIG`
 
 ### Fase 1 — Dados
 - [x] `BlogService` copiado do brain-logs, com `blogSlug: 'blog-de-notas'`
@@ -45,7 +45,7 @@ Blog de ensaios e textos livres (reflexões, sociedade, cotidiano) publicado em 
 - [x] Título + meta tags Open Graph (serviço `Seo` do brain-logs)
 
 ### Fase 3 — Prerender e publicação
-- [ ] Deploy rodou e site publicado conferido
+- [x] Deploy rodou e site publicado conferido (home e post prerenderizados, og:*, 404 cai no app)
 - [x] `getPrerenderParams` (uma página por post)
 - [x] Workflow no push, manual e agendado
 - [ ] Usuário, no ademiro: URL pública `https://thiago662.github.io/blog-de-notas-app` e URL do deploy `https://github.com/thiago662/blog-de-notas-app/actions/workflows/deploy.yml`
